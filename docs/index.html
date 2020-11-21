@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <title>Chimera Painter</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="style.css">
+    <!-- This is a custom build of a webpack packaged library. See https://github.com/kozo002/px-brush/pull/3 -->
+    <script src="https://gistcdn.githack.com/developit/9ef30073f34107891c9a5ca0815da3f2/raw/176495ef4551f986aae35b83f56a23f719f789cc/pxBrush.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Simonetta&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="box table splash">
+      <div class="header">Chimera Painter</div>
+      <p>
+        Chimera Painter is a demo that lets you run wild by drawing out creature shapes
+        that become fully fleshed out by our CreatureGAN machine learning model, which was
+        trained on hundreds of thousands of 2D renders of 3D creature models. You only tell
+        the model about the body parts in your creature and watch as it decides how to
+        finish it for you. Painting is a highly creative, iterative process. What can we
+        create when we start thinking about machine learning as a paintbrush?
+      </p>
+      <p>
+        By clicking on I Understand, it means that you understand and agree to the
+        <a href="toc.html" target="_blank">terms and conditions</a> in this agreement
+        and that you agree to participate in the Data Collection.
+      </p>
+      <div class="controls">
+        <button class="long action" id="btnOk">I understand</button>
+      </div>
+    </div>
+
+    <div class="horizontal main-wrapper" hidden>
+      <div class="box table">
+        <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+        <div class="horizontal">
+          <div class="box grid controls palette">
+            <button class="square" data-color="rgb(230, 25, 75)">head</button>
+            <button class="square" data-color="rgb(67, 99, 216)">mouth</button>
+            <button class="square" data-color="rgb(230, 190, 255)">muzzle</button>
+            <button class="square" data-color="rgb(170, 255, 195)">ears</button>
+            <button class="square" data-color="rgb(145, 30, 180)">torso front</button>
+            <button class="square" data-color="rgb(188, 246, 12)">upper legs front</button>
+            <button class="square" data-color="rgb(245, 130, 49)">upper legs back</button>
+            <button class="square" data-color="rgb(128, 128, 128)">foot top</button>
+            <button class="square" data-color="rgb(117, 0, 0)">horns</button>
+            <button class="square" data-color="rgb(240, 50, 230)">wing</button>
+            <button class="square" data-color="rgb(250, 190, 190)">eye</button>
+            <button class="square" data-color="rgb(128, 128, 0)">teeth</button>
+            <button class="square" data-color="rgb(70, 240, 240)">nose</button>
+            <button class="square" data-color="rgb(60, 180, 75)">neck</button>
+            <button class="square" data-color="rgb(0, 128, 128)">torso back</button>
+            <button class="square" data-color="rgb(0, 0, 117)">lower legs front</button>
+            <button class="square" data-color="rgb(128, 0, 0)">lower legs back</button>
+            <button class="square" data-color="rgb(255, 225, 25)">foot bottom</button>
+            <button class="square" data-color="rgb(154, 99, 36)">claws</button>
+            <button class="square" data-color="rgb(255, 216, 177)">tail</button>
+          </div> <!-- /palette -->
+
+          <div class="vertical">
+            <div class="controls presets horizontal">
+              <button class="long" onclick="loadPreset('presets/preset_1_27_03.png')">1</button>
+              <button class="long" onclick="loadPreset('presets/preset_2_27_03.png')">2</button>
+              <button class="long" onclick="loadPreset('presets/preset_3_27_03.png')">3</button>
+              <button class="long" onclick="loadPreset('presets/preset_4_27_03.png')">4</button>
+              <label class="button long">
+                <input type="file" onchange="loadPresetFile(event)" accept="image/*">
+                <span>load</span>
+              </label>
+              <button class="long action" id="btnStyle">Transform!</button>
+            </div>
+            <div class="box canvas-container"><canvas></canvas></div>
+
+            <div class="controls horizontal">
+              <div class="brushes horizontal">
+                <button class="round xxs" data-size="2"></button>
+                <button class="round xs" data-size="5"></button>
+                <button class="round s" data-size="10"></button>
+                <button class="round m" data-size="20"></button>
+                <button class="round l" data-size="50"></button>
+              </div>
+              <div class="tools horizontal flex">
+                <button class="long pencil" onclick="paint(event)">Paint</button>
+                <button class="long eraser" onclick="eraser(event)">Erase</button>
+                <button class="long" onclick="bucket(event)" hidden>Fill bucket</button>
+                <button class="long" onclick="clearDrawing(event)">Clear</button>
+              </div>
+            </div> <!-- /tools-->
+          </div> <!-- /vertical -->
+        </div> <!-- /horizontal -->
+      </div><!-- /box.table -->
+      <div class="box output">
+        <div class="corner tr"></div>
+        <div class="corner br"></div>
+        <div class="header">Chimera</div>
+        <img>
+        <div id="spinner"></div>
+      </div>
+    </div><!-- /main-wrapper -->
+  </body>
+
+  <script src="script.js"></script>
+</html>

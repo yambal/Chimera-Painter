@@ -1,0 +1,358 @@
+* {box-sizing: border-box}
+[hidden] {display: none !important}
+[disabled] {pointer-events:none; opacity: 0.3}
+
+html {
+  --background: #F1F5F8;
+  --spacing: 24px;
+  --spacing-s: 12px;
+
+  --square-button-height: 62px;
+  --square-button-width: 62px;
+  --long-button-height: 50px;
+  --canvas-size: 512px;
+}
+
+
+@media (max-width: 512px) {
+  html { --canvas-size: 256px; }
+}
+
+body {
+  padding: 2em;
+  margin: 0;
+  font-family: 'Simonetta', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: #093020;
+  background-image: url('assets/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+body.eula {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-family: sans-serif;
+  letter-spacing: 0
+}
+
+a:link, a:visited {
+    color: inherit;
+    font-weight: bold;
+}
+
+p {
+  text-transform: none;
+  padding: var(--spacing);
+  font-size: 18px;
+}
+
+.splash {
+  width: 100%;
+  max-width: 700px;
+  margin: var(--spacing-s) auto;
+}
+.splash .controls {
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: var(--spacing-s);
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.flex {
+  flex: 1;
+}
+
+.main-wrapper {
+  align-items: center;
+}
+
+.box {
+  position: relative;
+  padding: 4px;
+  background: #0E0A06;
+  border: 2px solid #B7876B;
+  border-image-source: radial-gradient(#FFCC95, #251B14);
+  border-image-slice: 1;
+}
+
+.box .header {
+  background: transparent url('assets/header.png') no-repeat top right;
+  background-size: cover;
+  color: white;
+  padding: 14px;
+  text-align: center;
+}
+.box .header::first-letter {
+  font-size: 18px;
+}
+
+.box.table {
+  display: table;
+  z-index: 2;
+  padding: 6px;
+}
+.box.output {
+  margin-left: -6px;
+}
+.grid {
+  display: grid;
+}
+
+.controls button, .button {
+  font-family: inherit;
+  font-size: 12px;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+  background:#2E2419;
+  color: #E2D2A5;
+  fill:  #E2D2A5;
+  border: none;
+  padding: 0;
+
+  /* fit in a grid nicely */
+  width: 100%;
+  height: 100%;
+  letter-spacing: 1px;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+button:active, button.active {
+  outline: none !important;
+}
+
+.controls button.active {
+  box-shadow: none;
+  border: none;
+  background: #020024;
+  background: linear-gradient(36deg, #020024 0%, #051408 16%, #1ce490 100%);
+}
+
+.controls button > svg {
+  pointer-events: none;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  vertical-align: middle;
+  margin: 0 8px;
+}
+.corner {
+  background: transparent url('assets/corner.png') no-repeat top right;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 10;
+}
+.corner.tl {
+  top: -6px;
+  left: -6px;
+  transform: rotate(-90deg);
+}
+.corner.tr {
+  top: -6px;
+  right: -6px;
+}
+.corner.bl {
+  bottom: -6px;
+  left: -6px;
+  transform: rotate(180deg);
+}
+.corner.br {
+  bottom: -6px;
+  right: -6px;
+  transform: rotate(90deg);
+}
+
+/*
+ * Body parts palette.
+ */
+
+.controls.palette {
+  grid-template-rows: repeat(10, var(--square-button-height));
+  grid-template-columns: repeat(2, var(--square-button-width));
+  margin-right: 8px;
+}
+
+.controls button.square {
+  position: relative;
+  font-size: 10px;
+  padding: 12px;
+  background: transparent url('assets/button_square_background.png') no-repeat top right;
+  /* The sprite has a bit of a padding around it, so resize it to fit better. */
+  background-position: -6px -6px;
+  background-size: calc(var(--square-button-width) + 12px)  calc(var(--square-button-height) + 12px);
+}
+.controls button.square.active {
+  background: transparent url('assets/button_square_active.png') no-repeat top right;
+  /* Make this sprite a bit smaller so that it looks more inset */
+  background-position: -2px -2px;
+  background-size: calc(var(--square-button-width) + 4px) calc(var(--square-button-height) + 4px);
+}
+.controls button.square > div {
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  border-radius: 50%;
+}
+
+/*
+ * App tools.
+ */
+.controls button.round {
+  flex-shrink: 0;
+  background: transparent url('assets/button_round.png') no-repeat top right;
+  background-size: cover;
+}
+.controls button.round.xxs {
+  height: 14px;
+  width: 14px;
+}
+.controls button.round.xs {
+  height: 16px;
+  width: 16px;
+}
+.controls button.round.s {
+  height: 20px;
+  width: 20px;
+}
+.controls button.round.m {
+  height: 30px;
+  width: 30px;
+}
+.controls button.round.l {
+  height: 40px;
+  width: 40px;
+}
+.controls button.round.active {
+  background: transparent url('assets/button_round_active.png') no-repeat top right;
+  background-size: cover;
+}
+
+.controls button.long, .button.long {
+  height: var(--long-button-height);
+  background: transparent url('assets/button_brown.png') no-repeat top right;
+  /* The sprite has a bit of a padding around it, so resize it to fit better. */
+  background-position: 0 -6px;
+  background-size: 100% calc(var(--long-button-height) + 12px);
+}
+.controls button.long.active {
+  background: transparent url('assets/button_green.png') no-repeat top right;
+  /* The sprite has a bit of a padding around it, so resize it to fit better. */
+  background-position: 0 -6px;
+  background-size: 100% calc(var(--long-button-height) + 12px);
+}
+.controls button.long.action {
+  background: transparent url('assets/button_red.png') no-repeat top right;
+  /* The sprite has a bit of a padding around it, so resize it to fit better. */
+  background-position: 0 -6px;
+  background-size: 100% calc(var(--long-button-height) + 12px);
+  min-width: 110px;
+}
+
+input[type=file]{
+  width: 0;
+  height: 0;
+  opacity: 0;
+  cursor: pointer;
+  display: none;
+}
+label {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  justify-content: center;
+}
+.output > img {
+  display: block;
+  height: var(--canvas-size);
+  width: var(--canvas-size);
+  margin: 0 auto;
+}
+
+#spinner {
+  background: url(assets/progress.png);
+  background-size: cover;
+  position: absolute;
+  top: calc(50% - 40px);  /* Account for the header. */
+  left: calc(50% - 50px);
+  width: 100px;
+  height: 100px;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin {
+  to {transform: rotate(360deg)}
+}
+
+.canvas-container {
+  margin: 4px 0;
+}
+
+canvas {
+  width: var(--canvas-size) !important;
+  height: var(--canvas-size) !important;
+
+  image-rendering: optimizeSpeed;             /* Older versions of FF          */
+  image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+  image-rendering: -webkit-optimize-contrast; /* Safari                        */
+  image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+  image-rendering: pixelated;                 /* Awesome future-browsers       */
+}
+
+@media (max-width: 500px) {
+  body {
+     --square-button-height: 54px;
+     --square-button-width: 100%;
+    padding: 4px;
+  }
+  .main-wrapper {
+    display: block;
+  }
+  .box.output {
+    margin-top: 20px;
+    margin-left: 0;
+  }
+  .box.table, .box.output {
+    display: inline-block;
+    width: 100%;
+  }
+  .box.table > .horizontal {
+    flex-direction: column;
+  }
+  .controls.palette {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 50px);
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+  .controls {
+    width: 100%;
+  }
+  .vertical {
+    width: 100%;
+    align-items: center;
+  }
+  button, .button {
+    letter-spacing 0 !important;
+    font-size: 10px !important;
+  }
+}
