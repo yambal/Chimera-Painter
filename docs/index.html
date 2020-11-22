@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Chimera Painter</title>
+    <title>キメラ ペインター</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,7 +11,7 @@
   </head>
   <body>
     <div class="box table splash">
-      <div class="header">Chimera Painter</div>
+      <div class="header">キメラ ペインター</div>
       <p>
         Chimera Painter is a demo that lets you run wild by drawing out creature shapes
         that become fully fleshed out by our CreatureGAN machine learning model, which was
@@ -22,7 +22,7 @@
       </p>
       <p>
         By clicking on I Understand, it means that you understand and agree to the
-        <a href="toc.html" target="_blank">terms and conditions</a> in this agreement
+        terms and conditions in this agreement
         and that you agree to participate in the Data Collection.
       </p>
       <div class="controls">
@@ -35,26 +35,26 @@
         <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
         <div class="horizontal">
           <div class="box grid controls palette">
-            <button class="square" data-color="rgb(230, 25, 75)">head</button>
-            <button class="square" data-color="rgb(67, 99, 216)">mouth</button>
-            <button class="square" data-color="rgb(230, 190, 255)">muzzle</button>
-            <button class="square" data-color="rgb(170, 255, 195)">ears</button>
-            <button class="square" data-color="rgb(145, 30, 180)">torso front</button>
-            <button class="square" data-color="rgb(188, 246, 12)">upper legs front</button>
-            <button class="square" data-color="rgb(245, 130, 49)">upper legs back</button>
-            <button class="square" data-color="rgb(128, 128, 128)">foot top</button>
-            <button class="square" data-color="rgb(117, 0, 0)">horns</button>
-            <button class="square" data-color="rgb(240, 50, 230)">wing</button>
-            <button class="square" data-color="rgb(250, 190, 190)">eye</button>
-            <button class="square" data-color="rgb(128, 128, 0)">teeth</button>
-            <button class="square" data-color="rgb(70, 240, 240)">nose</button>
-            <button class="square" data-color="rgb(60, 180, 75)">neck</button>
-            <button class="square" data-color="rgb(0, 128, 128)">torso back</button>
-            <button class="square" data-color="rgb(0, 0, 117)">lower legs front</button>
-            <button class="square" data-color="rgb(128, 0, 0)">lower legs back</button>
-            <button class="square" data-color="rgb(255, 225, 25)">foot bottom</button>
-            <button class="square" data-color="rgb(154, 99, 36)">claws</button>
-            <button class="square" data-color="rgb(255, 216, 177)">tail</button>
+            <button class="square" data-color="rgb(230, 25, 75)">頭</button>
+            <button class="square" data-color="rgb(67, 99, 216)">口の中</button>
+            <button class="square" data-color="rgb(230, 190, 255)">口</button>
+            <button class="square" data-color="rgb(170, 255, 195)">耳</button>
+            <button class="square" data-color="rgb(145, 30, 180)">体の前面</button>
+            <button class="square" data-color="rgb(188, 246, 12)">前上腕</button>
+            <button class="square" data-color="rgb(245, 130, 49)">後上腕 太股</button>
+            <button class="square" data-color="rgb(128, 128, 128)">甲</button>
+            <button class="square" data-color="rgb(117, 0, 0)">角</button>
+            <button class="square" data-color="rgb(240, 50, 230)">翼</button>
+            <button class="square" data-color="rgb(250, 190, 190)">目</button>
+            <button class="square" data-color="rgb(128, 128, 0)">歯</button>
+            <button class="square" data-color="rgb(70, 240, 240)">鼻</button>
+            <button class="square" data-color="rgb(60, 180, 75)">首</button>
+            <button class="square" data-color="rgb(0, 128, 128)">背中</button>
+            <button class="square" data-color="rgb(0, 0, 117)">前前腕</button>
+            <button class="square" data-color="rgb(128, 0, 0)">後前腕 脛・膨ら脛</button>
+            <button class="square" data-color="rgb(255, 225, 25)">手の平 足の裏</button>
+            <button class="square" data-color="rgb(154, 99, 36)">爪</button>
+            <button class="square" data-color="rgb(255, 216, 177)">尻尾</button>
           </div> <!-- /palette -->
 
           <div class="vertical">
@@ -65,9 +65,9 @@
               <button class="long" onclick="loadPreset('presets/preset_4_27_03.png')">4</button>
               <label class="button long">
                 <input type="file" onchange="loadPresetFile(event)" accept="image/*">
-                <span>load</span>
+                <span>読み込み</span>
               </label>
-              <button class="long action" id="btnStyle">Transform!</button>
+              <button class="long action" id="btnStyle">変換</button>
             </div>
             <div class="box canvas-container"><canvas></canvas></div>
 
@@ -80,10 +80,10 @@
                 <button class="round l" data-size="50"></button>
               </div>
               <div class="tools horizontal flex">
-                <button class="long pencil" onclick="paint(event)">Paint</button>
-                <button class="long eraser" onclick="eraser(event)">Erase</button>
+                <button class="long pencil" onclick="paint(event)">塗る</button>
+                <button class="long eraser" onclick="eraser(event)">消す</button>
                 <button class="long" onclick="bucket(event)" hidden>Fill bucket</button>
-                <button class="long" onclick="clearDrawing(event)">Clear</button>
+                <button class="long" onclick="clearDrawing(event)">クリア</button>
               </div>
             </div> <!-- /tools-->
           </div> <!-- /vertical -->
@@ -92,7 +92,7 @@
       <div class="box output">
         <div class="corner tr"></div>
         <div class="corner br"></div>
-        <div class="header">Chimera</div>
+        <div class="header">キメラ</div>
         <img>
         <div id="spinner"></div>
       </div>
